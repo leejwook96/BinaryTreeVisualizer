@@ -3,34 +3,41 @@ import "../../App.scss";
 import BinaryTreeRender from "../BinaryTreeRender";
 import { FormControl, InputGroup, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Slider, Typography, Grid } from "@material-ui/core";
+
+import BinarySearchTreeClass from "../../objects/BinarySearchTree";
 
 class BinarySearchTree extends React.Component {
   constructor(props) {
     super(props);
     this.textInput = React.createRef();
+    this.transitionDurationValue = 500;
     this.nextId = 4;
+    this.root = new BinarySearchTreeClass();
     this.state = {
-      numberInput: "",
-      data: [
-        {
-          name: "1",
-          children: [
-            {
-              name: "2",
-            },
-            {
-              name: "3",
-            },
-          ],
-        },
-      ],
+      data: [{ name: "NULL" }],
+      transitionDuration: 500,
     };
   }
 
-  addNumber = (number) => {
+  addNumber = () => {
     const value = this.textInput.current.value;
-    console.log(value);
+    this.root.insertValue(parseFloat(value));
     this.textInput.current.value = "";
+    this.setState({
+      data: this.root.convertToD3Tree(),
+      transitionDuration: this.transitionDurationValue,
+    });
+  };
+
+  handleKeyPress = (target) => {
+    if (target.charCode === 13) {
+      this.addNumber();
+    }
+  };
+
+  handleValueChange = (event, newValue) => {
+    this.transitionDurationValue = newValue;
   };
 
   render() {
@@ -38,7 +45,7 @@ class BinarySearchTree extends React.Component {
       <div className="main-container">
         <div className="tree-container">
           <div className="bst-add-form">
-            <InputGroup className="mb-3">
+            <InputGroup className="mb-3" onKeyPress={this.handleKeyPress}>
               <InputGroup.Prepend>
                 <InputGroup.Text>Add more numbers</InputGroup.Text>
               </InputGroup.Prepend>
@@ -50,16 +57,39 @@ class BinarySearchTree extends React.Component {
               />
               <InputGroup.Append>
                 <Button
-                  color="primary"
                   variant="primary"
                   onClick={this.addNumber}
+                  type="submit"
                 >
                   Add
                 </Button>
               </InputGroup.Append>
             </InputGroup>
+
+            <Typography id="continuous-slider" gutterBottom>
+              <b>Render Speed</b>
+            </Typography>
+
+            <Grid container spacing={2}>
+              <Grid item>Faster</Grid>
+              <Grid item xs>
+                <Slider
+                  defaultValue={this.transitionDurationValue}
+                  step={100}
+                  min={0}
+                  max={5000}
+                  onChange={this.handleValueChange}
+                  aria-labelledby="continuous-slider"
+                />
+              </Grid>
+              <Grid item>Slower</Grid>
+            </Grid>
           </div>
-          <BinaryTreeRender data={this.state.data} />;
+          <BinaryTreeRender
+            data={this.state.data}
+            transitionDurationValue={this.state.transitionDuration}
+          />
+          ;
         </div>
       </div>
     );

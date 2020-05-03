@@ -12,9 +12,33 @@ class BinaryTreeRender extends React.Component {
       <Tree
         data={this.props.data}
         orientation="vertical"
+        collapsible={false}
+        transitionDuration={this.props.transitionDurationValue}
         translate={{
           x: (window.innerWidth * 0.8) / 2,
-          y: (window.innerHeight * 0.8) / 2,
+          y: (window.innerHeight * 0.8) / 10,
+        }}
+        styles={{
+          nodes: {
+            node: {
+              circle: {
+                fill: "#ffffff",
+                name: {
+                  fontFamily: `'Roboto', sans-serif`,
+                  fontSize: "1.6rem",
+                },
+              },
+            },
+            leafNode: {
+              circle: {
+                fill: "green",
+                name: {
+                  fontFamily: `'Roboto', sans-serif`,
+                  fontSize: "1.6rem",
+                },
+              },
+            },
+          },
         }}
       />
     );
