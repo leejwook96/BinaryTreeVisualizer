@@ -3,12 +3,19 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 import * as serviceWorker from "./serviceWorker";
 import HomePage from "./components/HomePage";
+import BinarySearchTree from "./components/BinarySearchTree";
+import BinaryTree from "./components/BinaryTree";
+import { Route, BrowserRouter } from "react-router-dom";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <HomePage />
-  </React.StrictMode>,
-  document.getElementById("root")
+const routing = (
+  <BrowserRouter>
+    <div>
+      <Route path="/" component={HomePage} />
+      <Route path="/bt" component={BinaryTree} />
+      <Route path="/bst" component={BinarySearchTree} />
+    </div>
+  </BrowserRouter>
 );
+ReactDOM.render(routing, document.getElementById("root"));
 
 serviceWorker.unregister();

@@ -1,0 +1,15 @@
+.main-container {
+  margin-left: 10%;
+  margin-right: 10%;
+
+  .tree-container {
+    border: solid black 2px;
+    height: 80vh;
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+    .bst-add-form {
+      width: 25em;
+    }
+  }
+}
