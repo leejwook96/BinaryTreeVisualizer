@@ -1,14 +1,14 @@
 import React from "react";
 
-class App extends React.Component {
+class BinaryTree extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
-    return <div>App</div>;
+    return <div>BinaryTree</div>;
   }
 }
 
-export default App;
+export default BinaryTree;
