@@ -123,7 +123,6 @@ class BinaryTree extends React.Component {
         <h1>Binary Tree Visualizer</h1>
         <div className="instruction">
           <h2 style={{ fontWeight: "bold" }}>Instructions</h2>
-          <h5> Different Functionalities: </h5>
           <Accordion className="instruction-card">
             <Card>
               <Card.Header>
