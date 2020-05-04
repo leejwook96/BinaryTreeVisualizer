@@ -21,8 +21,11 @@ class AvlTree extends React.Component {
   }
 
   addNumber = () => {
-    const value = this.textInput.current.value;
-    this.avl.insertValue(parseFloat(value));
+    const value = parseFloat(this.textInput.current.value);
+    if (isNaN(value)) {
+      return;
+    }
+    this.avl.insertValue(value);
     this.textInput.current.value = "";
     this.avl.balance();
     this.setState({

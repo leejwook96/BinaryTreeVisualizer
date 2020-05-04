@@ -20,8 +20,11 @@ class BinarySearchTree extends React.Component {
   }
 
   addNumber = () => {
-    const value = this.textInput.current.value;
-    this.root.insertValue(parseFloat(value));
+    const value = parseFloat(this.textInput.current.value);
+    if (isNaN(value)) {
+      return;
+    }
+    this.root.insertValue(value);
     this.textInput.current.value = "";
     this.setState({
       data: this.root.convertToD3Tree(),

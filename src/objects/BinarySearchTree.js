@@ -1,7 +1,7 @@
-import BinaryTreeClass from "./BinaryTree";
 import Node from "./Node";
+import BinaryTreeBaseClass from "./BinaryTreeBase";
 
-class BinarySearchTreeClass extends BinaryTreeClass {
+class BinarySearchTreeClass extends BinaryTreeBaseClass {
   insertValue(value) {
     let node = new Node(value);
 
@@ -27,6 +27,7 @@ class BinarySearchTreeClass extends BinaryTreeClass {
       if (parent.left === null && parent.right === null) {
         allParents.map((parent) => {
           parent.height++;
+          return null;
         });
       }
       if (parent.value <= value) {

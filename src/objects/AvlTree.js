@@ -27,7 +27,6 @@ class AvlTreeClass extends BinarySearchTreeClass {
     let node = unbalancedNode[0];
     let parent = unbalancedNode[1];
     let difference = node.getHeightDiff();
-    console.log(unbalancedNode);
     if (difference < 0) {
       // right heavy RR RL rotation
       let rightHeightDiff = node.right.getHeightDiff();

@@ -22,13 +22,14 @@ class BinaryTree extends React.Component {
   onMouseClick = (e) => {
     this.setState({ cursorx: e.clientX });
     this.setState({ cursory: e.clientY });
-    console.log(e.screenX);
-    console.log(e.screenY);
   };
 
   changeNumber = () => {
     this.setState({ show: false });
-    const value = this.textInput.current.value;
+    const value = parseFloat(this.textInput.current.value);
+    if (isNaN(value)) {
+      return;
+    }
     this.root.changeValue(this.nodeClickedId, value);
     this.textInput.current.value = "";
     this.nodeClickedId = null;
@@ -74,20 +75,17 @@ class BinaryTree extends React.Component {
   };
 
   handleNodeClick = (node, evt) => {
-    // console.log(node);
     if (this.state.show === false) {
       this.nodeClickedId = node.nodeId;
       this.onMouseClick(evt);
       this.setState({ show: true });
     } else {
-      console.log(this.state.show);
       this.setState({ show: false });
-      if (this.nodeClickedIn !== node.nodeId) {
+      if (this.nodeClickedId !== node.nodeId) {
         this.nodeClickedId = node.nodeId;
         this.onMouseClick(evt);
         this.setState({ show: true });
       } else {
-        console.log("CLOSE");
         this.nodeClickedId = null;
         this.textInput.current.value = "";
       }
@@ -104,11 +102,7 @@ class BinaryTree extends React.Component {
             transitionDuration={0}
           />
           <div>
-            {this.state.show ? (
-              <div>{this.renderInputForm()}</div>
-            ) : (
-              console.log(this.state.cursory, this.state.cursorx)
-            )}
+            {this.state.show ? <div>{this.renderInputForm()}</div> : <></>}
           </div>
         </div>
       </div>

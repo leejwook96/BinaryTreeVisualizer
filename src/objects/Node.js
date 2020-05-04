@@ -44,7 +44,6 @@ class Node {
   }
 
   RLRotation() {
-    console.log(this);
     let root = this.right.left;
     let originalRight = this.right;
 

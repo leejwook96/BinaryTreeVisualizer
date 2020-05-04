@@ -1,7 +1,9 @@
 import Node from "../objects/Node";
+import BinaryTreeBaseClass from "./BinaryTreeBase";
 
-class BinaryTreeClass {
+class BinaryTreeClass extends BinaryTreeBaseClass {
   constructor() {
+    super();
     this.root = new Node("NULL", 0);
     this.numNode = 1;
     this.mapping = { 0: this.root };
@@ -41,11 +43,6 @@ class BinaryTreeClass {
       this.mapping[this.numNode++] = node.right;
     }
     node.value = newValue;
-  }
-
-  convertToD3Tree() {
-    let res = this.convertToD3TreeHelper(this.root);
-    return [res];
   }
 
   convertToD3TreeHelper(root) {
