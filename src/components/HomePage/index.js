@@ -12,7 +12,7 @@ class HomePage extends React.Component {
     return (
       <>
         <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="/">Binary Tree Visualizer</Navbar.Brand>
+          <Navbar.Brand>Binary Tree Visualizer</Navbar.Brand>
           <Nav className="justify-content-center">
             <NavItem>
               <Nav.Link href="/bt">Binary Tree (BT) </Nav.Link>

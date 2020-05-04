@@ -36,21 +36,53 @@ class BinaryTreeClass extends BinaryTreeBaseClass {
 
   changeValue(clickedId, newValue) {
     let node = this.mapping[clickedId];
-    if (node.value === "NULL") {
+    console.log(clickedId, node);
+    if (newValue.toUpperCase() === "NULL") {
+      // console.log(this.mapping[node.left.id], this.mapping[node.right.id]);
+      console.log(this.mapping);
+      if (node.left != null) {
+        delete this.mapping[node.left.id];
+        node.left = null;
+      }
+      if (node.right != null) {
+        delete this.mapping[node.right.id];
+        node.right = null;
+      }
+      console.log(this.mapping);
+
+      this.mapping[node.id].value = "NULL";
+      node.value = "NULL";
+    } else if (node.value === "NULL") {
+      newValue = parseFloat(newValue);
       node.left = new Node("NULL", this.numNode);
       this.mapping[this.numNode++] = node.left;
       node.right = new Node("NULL", this.numNode);
       this.mapping[this.numNode++] = node.right;
+      node.value = newValue;
+    } else {
+      node.value = newValue;
     }
-    node.value = newValue;
   }
+
+  // changeValue(clickedId, newValue) {
+  //   let node = this.mapping[clickedId];
+  //   if (node.value === "NULL") {
+  //     node.left = new Node("NULL", this.numNode);
+  //     this.mapping[this.numNode++] = node.left;
+  //     node.right = new Node("NULL", this.numNode);
+  //     this.mapping[this.numNode++] = node.right;
+  //   }
+  //   node.value = newValue;
+  // }
 
   convertToD3TreeHelper(root) {
     if (root.value === "NULL") {
+      console.log(root.id);
       return { name: root.value, nodeId: root.id, children: [] };
     }
 
     this.mapping[root.nodeId] = root;
+    console.log(this.mapping);
     if (root.left.value === "NULL" && root.right.value === "NULL") {
       return {
         name: root.value.toString(),
