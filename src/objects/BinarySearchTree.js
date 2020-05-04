@@ -6,6 +6,9 @@ class BinarySearchTreeClass extends BinaryTreeClass {
     let node = new Node(value);
 
     let curr = this.root;
+
+    let allParents = [];
+
     if (curr === null) {
       this.root = node;
     } else {
@@ -18,6 +21,13 @@ class BinarySearchTreeClass extends BinaryTreeClass {
         } else {
           curr = curr.left;
         }
+        allParents.push(parent);
+      }
+
+      if (parent.left === null && parent.right === null) {
+        allParents.map((parent) => {
+          parent.height++;
+        });
       }
       if (parent.value <= value) {
         parent.right = node;
@@ -26,7 +36,6 @@ class BinarySearchTreeClass extends BinaryTreeClass {
       }
     }
     this.numNode++;
-    // return this;
   }
 
   convertToD3TreeHelper(root) {
