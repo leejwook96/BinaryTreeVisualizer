@@ -20,6 +20,9 @@ class HomePage extends React.Component {
             <NavItem>
               <Nav.Link href="/bst">Binary Search Tree (BST)</Nav.Link>
             </NavItem>
+            <NavItem>
+              <Nav.Link href="/avl">Self Balancing Tree (AVL)</Nav.Link>
+            </NavItem>
           </Nav>
         </Navbar>
       </>
