@@ -28,6 +28,24 @@ class BinarySearchTreeClass extends BinaryTreeClass {
     this.numNode++;
     // return this;
   }
+
+  convertToD3TreeHelper(root) {
+    if (root === null) return { name: "null", children: [] };
+    if (root.left === null && root.right === null) {
+      return {
+        name: root.value.toString(),
+        children: [
+          { name: "null", children: [] },
+          { name: "null", children: [] },
+        ],
+      };
+    }
+
+    let left = this.convertToD3TreeHelper(root.left);
+    let right = this.convertToD3TreeHelper(root.right);
+    let children = [left, right];
+    return { name: root.value.toString(), children };
+  }
 }
 
 export default BinarySearchTreeClass;

@@ -1,18 +1,17 @@
 class Node {
-  constructor(value) {
+  constructor(value, id) {
     this.value = value;
     this.left = null;
     this.right = null;
+    this.id = id;
   }
 
   addLeft(node) {
-    // Node is type BinaryTree
     this.left = node;
     return this;
   }
 
   addRight(node) {
-    // Node is type BinaryTree
     this.right = node;
     return this;
   }

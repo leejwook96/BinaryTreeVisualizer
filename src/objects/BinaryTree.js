@@ -1,15 +1,47 @@
+import Node from "../objects/Node";
+
 class BinaryTreeClass {
   constructor() {
-    this.root = null;
-    this.numNode = 0;
+    this.root = new Node("NULL", 0);
+    this.numNode = 1;
+    this.mapping = { 0: this.root };
   }
 
-  // Methods TODO
-  preOrder() {}
+  // preOrder() {
+  //   return this.root.preOrder();
+  //   if (root.value !== "NULL") {
+  //     console.log(root.value);
+  //     this.preOrder(root.left);
+  //     this.preOrder(root.right);
+  //   }
+  // }
 
-  postOrder() {}
+  // postOrder(root) {
+  //   if (root.value !== "NULL") {
+  //     this.postOrder(root.left);
+  //     this.postOrder(root.right);
+  //     console.log(root.value);
+  //   }
+  // }
 
-  inOrder() {}
+  // inOrder(root) {
+  //   if (root.value !== "NULL") {
+  //     this.inOrder(root.left);
+  //     console.log(root.value);
+  //     this.inOrder(root.right);
+  //   }
+  // }
+
+  changeValue(clickedId, newValue) {
+    let node = this.mapping[clickedId];
+    if (node.value === "NULL") {
+      node.left = new Node("NULL", this.numNode);
+      this.mapping[this.numNode++] = node.left;
+      node.right = new Node("NULL", this.numNode);
+      this.mapping[this.numNode++] = node.right;
+    }
+    node.value = newValue;
+  }
 
   convertToD3Tree() {
     let res = this.convertToD3TreeHelper(this.root);
@@ -17,13 +49,25 @@ class BinaryTreeClass {
   }
 
   convertToD3TreeHelper(root) {
-    if (root === null) return { name: "null", children: [] };
-    if (root.left === null && root.right === null) {
+    if (root.value === "NULL") {
+      return { name: root.value, nodeId: root.id, children: [] };
+    }
+
+    this.mapping[root.nodeId] = root;
+    if (root.left.value === "NULL" && root.right.value === "NULL") {
       return {
         name: root.value.toString(),
         children: [
-          { name: "null", children: [] },
-          { name: "null", children: [] },
+          {
+            name: root.left.value.toString(),
+            nodeId: root.left.id,
+            children: [],
+          },
+          {
+            name: root.right.value.toString(),
+            nodeId: root.right.id,
+            children: [],
+          },
         ],
       };
     }
@@ -31,7 +75,7 @@ class BinaryTreeClass {
     let left = this.convertToD3TreeHelper(root.left);
     let right = this.convertToD3TreeHelper(root.right);
     let children = [left, right];
-    return { name: root.value.toString(), children };
+    return { name: root.value.toString(), nodeId: root.id, children };
   }
 }
 

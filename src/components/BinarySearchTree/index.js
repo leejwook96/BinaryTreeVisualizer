@@ -12,7 +12,6 @@ class BinarySearchTree extends React.Component {
     super(props);
     this.textInput = React.createRef();
     this.transitionDurationValue = 500;
-    this.nextId = 4;
     this.root = new BinarySearchTreeClass();
     this.state = {
       data: [{ name: "NULL" }],
