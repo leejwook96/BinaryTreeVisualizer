@@ -47,6 +47,14 @@ class BinaryTree extends React.Component {
     });
   };
 
+  deleteNumber = () => {
+    this.root.deleteNode(this.nodeClickedId);
+    this.setState({
+      prev: this.state.data,
+      data: this.root.convertToD3Tree(),
+    });
+  };
+
   handleKeyPress = (target) => {
     if (target.charCode === 13) {
       this.changeNumber();
@@ -111,6 +119,9 @@ class BinaryTree extends React.Component {
           <Button variant="primary" onClick={this.changeNumber} type="submit">
             Update
           </Button>
+          <Button variant="primary" onClcik={this.deleteNumber} type="submit">
+            Delete
+          </Button>
         </InputGroup.Append>
       </InputGroup>
     );
@@ -121,68 +132,6 @@ class BinaryTree extends React.Component {
       <div className="main-container">
         <br />
         <h1>Binary Tree Visualizer</h1>
-        <div className="instruction">
-          <h2 style={{ fontWeight: "bold" }}>Instructions</h2>
-          <Accordion className="instruction-card">
-            <Card>
-              <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                  {"\u25cf"} Add/Change Node
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="0">
-                <Card.Body>
-                  <p>Click on any available nodes to update its value.</p>
-                  <p>
-                    Valid input value: 1, 1.5, -1000, 2349024nn (will be treated
-                    as 2349024)
-                  </p>
-                  <p>Invalid input value: akldf, (empty string), r1238fjf</p>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-            <Card>
-              <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                  {"\u25cf"} Remove Node
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="1">
-                <Card.Body>
-                  <p>
-                    Click on any available nodes to update its value to NULL
-                    (case-insensitive).
-                  </p>
-                  <p>Note: it will remove all its children</p>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-            <Card>
-              <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="2">
-                  {"\u25cf"} Undo
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="2">
-                <Card.Body>
-                  <p>Can go back to previous state for once</p>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-            <Card>
-              <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="3">
-                  {"\u25cf"} Reset
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="3">
-                <Card.Body>
-                  <p>Reset back to empty tree</p>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-          </Accordion>
-        </div>
         <div className="tree-container">
           <Button
             variant="info"
