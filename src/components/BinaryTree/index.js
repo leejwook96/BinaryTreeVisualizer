@@ -2,13 +2,8 @@ import React from "react";
 import "../../App.scss";
 import BinaryTreeRender from "../BinaryTreeRender";
 import BinaryTreeClass from "../../objects/BinaryTree";
-import {
-  FormControl,
-  InputGroup,
-  Button,
-  Card,
-  Accordion,
-} from "react-bootstrap";
+import { FormControl, InputGroup, Button } from "react-bootstrap";
+import { Snackbar } from "@material-ui/core";
 
 class BinaryTree extends React.Component {
   constructor(props) {
@@ -19,7 +14,6 @@ class BinaryTree extends React.Component {
     this.root = new BinaryTreeClass();
     this.state = {
       data: [{ name: "NULL", nodeId: 0 }],
-      prev: [{ name: "NULL", nodeId: 0 }],
       show: false,
       cursorx: null,
       cursory: null,
@@ -27,42 +21,39 @@ class BinaryTree extends React.Component {
   }
 
   onMouseClick = (e) => {
-    this.setState({ cursorx: e.clientX });
-    this.setState({ cursory: e.clientY });
+    this.setState({ cursorx: e.pageX });
+    this.setState({ cursory: e.pageY });
   };
 
   changeNumber = () => {
-    console.log(this.nodeClickedId);
     this.setState({ show: false });
-    const value = this.textInput.current.value;
-    if (value.toUpperCase() !== "NULL" && isNaN(parseFloat(value))) {
+    const value = parseFloat(this.textInput.current.value);
+    if (isNaN(value)) {
       return;
     }
     this.root.changeValue(this.nodeClickedId, value);
     this.textInput.current.value = "";
     this.nodeClickedId = null;
     this.setState({
-      prev: this.state.data,
       data: this.root.convertToD3Tree(),
     });
   };
 
   deleteNumber = () => {
+    this.setState({ show: false });
     this.root.deleteNode(this.nodeClickedId);
     this.setState({
-      prev: this.state.data,
       data: this.root.convertToD3Tree(),
     });
   };
 
-  handleKeyPress = (target) => {
+  handleEnterKeyPress = (target) => {
     if (target.charCode === 13) {
       this.changeNumber();
     }
   };
 
   handleNodeClick = (node, evt) => {
-    console.log(node.nodeId);
     if (this.state.show === false) {
       this.nodeClickedId = node.nodeId;
       this.onMouseClick(evt);
@@ -78,52 +69,53 @@ class BinaryTree extends React.Component {
         this.textInput.current.value = "";
       }
     }
-    console.log(this.nodeClickedId);
-  };
-
-  handleUndoButtonClick = () => {
-    this.setState({
-      data: this.state.prev,
-    });
   };
 
   handleResetButtonClick = () => {
     this.setState({
       data: [{ name: "NULL", nodeId: 0 }],
-      prev: [{ name: "NULL", nodeId: 0 }],
     });
   };
 
   renderInputForm = () => {
     return (
-      <InputGroup
-        className="mb-3"
-        onKeyPress={this.handleKeyPress}
+      <Snackbar
+        open={this.state.show}
+        onClose={() => {
+          this.setState({ show: false });
+        }}
         style={{
           width: 20 + "em",
           position: "absolute",
-          top: this.state.cursory - 25 + "px",
-          left: this.state.cursorx + 100 + "px",
+          top: this.state.cursory - 500 + "px",
+          left: this.state.cursorx + 300 + "px",
         }}
       >
-        <InputGroup.Prepend>
-          <InputGroup.Text>New Value</InputGroup.Text>
-        </InputGroup.Prepend>
-        <FormControl
-          ref={this.textInput}
-          type="text"
-          aria-label=""
-          aria-describedby="basic-addon2"
-        />
-        <InputGroup.Append>
-          <Button variant="primary" onClick={this.changeNumber} type="submit">
-            Update
-          </Button>
-          <Button variant="primary" onClcik={this.deleteNumber} type="submit">
-            Delete
-          </Button>
-        </InputGroup.Append>
-      </InputGroup>
+        <InputGroup className="mb-3" onKeyPress={this.handleEnterKeyPress}>
+          <FormControl
+            ref={this.textInput}
+            type="text"
+            aria-label=""
+            aria-describedby="basic-addon2"
+          />
+          <InputGroup.Append>
+            <Button
+              variant="secondary"
+              onClick={this.changeNumber}
+              type="submit"
+            >
+              Update
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={this.deleteNumber}
+              type="submit"
+            >
+              Delete
+            </Button>
+          </InputGroup.Append>
+        </InputGroup>
+      </Snackbar>
     );
   };
 
@@ -132,15 +124,12 @@ class BinaryTree extends React.Component {
       <div className="main-container">
         <br />
         <h1>Binary Tree Visualizer</h1>
+        <br />
+        <h5>
+          {" "}
+          {"\u25CF"} Click on any available nodes to update value or delete node
+        </h5>
         <div className="tree-container">
-          <Button
-            variant="info"
-            className="float-right"
-            onClick={this.handleUndoButtonClick}
-          >
-            Undo
-          </Button>
-
           <Button
             variant="danger"
             className="float-right"
