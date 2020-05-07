@@ -1,14 +1,24 @@
 import BinarySearchTreeClass from "./BinarySearchTree";
 
 class AvlTreeClass extends BinarySearchTreeClass {
-  balance() {
+  isBalanced() {
+    console.log(this.getUnbalancedNode());
+    return this.getUnbalancedNode().length === 0;
+  }
+
+  getUnbalancedNode() {
     let unbalancedNode = [];
     this.findUnbalancedNode(this.root, unbalancedNode, null);
+
+    return unbalancedNode;
+  }
+
+  balance() {
+    let unbalancedNode = this.getUnbalancedNode();
     while (unbalancedNode.length === 2) {
       this.rotate(unbalancedNode);
 
-      unbalancedNode = [];
-      this.findUnbalancedNode(this.root, unbalancedNode, null);
+      unbalancedNode = this.getUnbalancedNode();
     }
   }
 
