@@ -3,10 +3,6 @@ import { ButtonGroup, Button, OverlayTrigger, Popover } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class TraversalBtnGrp extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   getTraversalResult = (order) => {
     if (order[0] === 'I') {
       // in
