@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/binary-tree-visualizer/static/css/main.a28ee85c.chunk.css",
+    "main.js": "/binary-tree-visualizer/static/js/main.aac12bfc.chunk.js",
+    "main.js.map": "/binary-tree-visualizer/static/js/main.aac12bfc.chunk.js.map",
+    "runtime-main.js": "/binary-tree-visualizer/static/js/runtime-main.56991b2b.js",
+    "runtime-main.js.map": "/binary-tree-visualizer/static/js/runtime-main.56991b2b.js.map",
+    "static/css/2.0f35f37b.chunk.css": "/binary-tree-visualizer/static/css/2.0f35f37b.chunk.css",
+    "static/js/2.410495c4.chunk.js": "/binary-tree-visualizer/static/js/2.410495c4.chunk.js",
+    "static/js/2.410495c4.chunk.js.map": "/binary-tree-visualizer/static/js/2.410495c4.chunk.js.map",
+    "index.html": "/binary-tree-visualizer/index.html",
+    "precache-manifest.7ca34e06cee1d488630f6404dd406eb1.js": "/binary-tree-visualizer/precache-manifest.7ca34e06cee1d488630f6404dd406eb1.js",
+    "service-worker.js": "/binary-tree-visualizer/service-worker.js",
+    "static/css/2.0f35f37b.chunk.css.map": "/binary-tree-visualizer/static/css/2.0f35f37b.chunk.css.map",
+    "static/css/main.a28ee85c.chunk.css.map": "/binary-tree-visualizer/static/css/main.a28ee85c.chunk.css.map",
+    "static/js/2.410495c4.chunk.js.LICENSE.txt": "/binary-tree-visualizer/static/js/2.410495c4.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.56991b2b.js",
+    "static/css/2.0f35f37b.chunk.css",
+    "static/js/2.410495c4.chunk.js",
+    "static/css/main.a28ee85c.chunk.css",
+    "static/js/main.aac12bfc.chunk.js"
+  ]
+}
