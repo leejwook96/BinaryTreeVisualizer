@@ -2,16 +2,16 @@ import React from "react";
 import "../../App.scss";
 import BinaryTreeRender from "../BinaryTreeRender";
 import BinaryTreeClass from "../../objects/BinaryTree";
+import TraversalBtnGrp from "../TraversalBtnGrp";
 import { FormControl, InputGroup, Button } from "react-bootstrap";
 import { Snackbar } from "@material-ui/core";
 
 class BinaryTree extends React.Component {
   constructor(props) {
     super(props);
-    this.defaultColor = "#92C2FC";
     this.textInput = React.createRef();
     this.nodeClickedId = null;
-    this.root = new BinaryTreeClass();
+    this.bt = new BinaryTreeClass();
     this.state = {
       data: [{ name: "NULL", nodeId: 0 }],
       show: false,
@@ -31,19 +31,19 @@ class BinaryTree extends React.Component {
     if (isNaN(value)) {
       return;
     }
-    this.root.changeValue(this.nodeClickedId, value);
+    this.bt.changeValue(this.nodeClickedId, value);
     this.textInput.current.value = "";
     this.nodeClickedId = null;
     this.setState({
-      data: this.root.convertToD3Tree(),
+      data: this.bt.convertToD3Tree(),
     });
   };
 
   deleteNumber = () => {
     this.setState({ show: false });
-    this.root.deleteNode(this.nodeClickedId);
+    this.bt.deleteNode(this.nodeClickedId);
     this.setState({
-      data: this.root.convertToD3Tree(),
+      data: this.bt.convertToD3Tree(),
     });
   };
 
@@ -129,6 +129,9 @@ class BinaryTree extends React.Component {
           {" "}
           {"\u25CF"} Click on any available nodes to update value or delete node
         </h5>
+
+        <TraversalBtnGrp tree={this.bt} />
+
         <div className="tree-container">
           <Button
             variant="danger"

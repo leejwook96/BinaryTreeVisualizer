@@ -9,18 +9,6 @@ class BinaryTreeClass extends BinaryTreeBaseClass {
     this.mapping = { 0: this.root };
   }
 
-  preOrder() {
-    return this.root.preOrder();
-  }
-
-  postOrder() {
-    return this.root.postOrder();
-  }
-
-  inOrder() {
-    return this.root.inOrder();
-  }
-
   changeValue(clickedId, newValue) {
     let node = this.mapping[clickedId];
 

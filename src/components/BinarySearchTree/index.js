@@ -1,6 +1,7 @@
 import React from "react";
 import "../../App.scss";
 import BinaryTreeRender from "../BinaryTreeRender";
+import TraversalBtnGrp from "../TraversalBtnGrp";
 import { FormControl, InputGroup, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Slider, Typography, Grid } from "@material-ui/core";
@@ -109,7 +110,8 @@ class BinarySearchTree extends React.Component {
     return (
       <div className="main-container">
         <br />
-        <h1>AVL Tree Visualizer</h1>
+        <h1>Binary Search Tree Visualizer</h1>
+        <TraversalBtnGrp tree={this.bst} />
         <div className="tree-container">
           <div className="bst-add-form float-left">
             {this.renderAddNodeInputGroup()}
