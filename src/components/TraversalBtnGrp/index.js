@@ -23,7 +23,7 @@ class TraversalBtnGrp extends React.Component {
       <Popover id="popover-positioned-bottom">
         <Popover.Title as="h3">{`${order} Traversal`}</Popover.Title>
         <Popover.Content>
-          {this.getTraversalResult(order)}
+          {this.getTraversalResult(order).join('-')}
         </Popover.Content>
       </Popover>
     );
