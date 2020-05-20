@@ -75,6 +75,7 @@ class BinaryTree extends React.Component {
     this.setState({
       data: [{ name: "NULL", nodeId: 0 }],
     });
+    this.bt = new BinaryTreeClass();
   };
 
   renderInputForm = () => {
