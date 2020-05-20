@@ -19,5 +19,3 @@ const routing = (
   </BrowserRouter>
 );
 ReactDOM.render(routing, document.getElementById("root"));
-
-serviceWorker.unregister();
