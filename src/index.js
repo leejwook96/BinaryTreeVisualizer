@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
-import * as serviceWorker from "./serviceWorker";
 import HomePage from "./components/HomePage";
 import BinarySearchTree from "./components/BinarySearchTree";
 import BinaryTree from "./components/BinaryTree";
